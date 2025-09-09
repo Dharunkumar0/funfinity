@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LearnPlay - Select Grade</title>
+  <link rel="stylesheet" href="/workspace/styles.css">
+  <style>
+    .grade-note { margin-top: 8px; color: var(--muted); }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="container navbar-inner">
+      <a class="brand" href="./index.html"><span class="logo">🎓</span> LearnPlay</a>
+      <a class="auth-btn" href="./auth.html">Account</a>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1>Who are you?</h1>
+    <p class="sub">Choose Student to pick your grade, or continue as Teacher.</p>
+
+    <section class="selection">
+      <div class="selection-grid">
+        <a class="pill" href="#grades">
+          <span style="font-size:22px">🎒</span>
+          <span>Student</span>
+        </a>
+        <a class="pill" href="./teacher.html">
+          <span style="font-size:22px">🧑‍🏫</span>
+          <span>Teacher</span>
+        </a>
+      </div>
+    </section>
+
+    <h2 id="grades" style="margin-top:20px">Select your Grade</h2>
+    <p class="grade-note">Grades 6 will see age-appropriate visuals: more playful for 6, sleeker for 9, and professional for 11.</p>
+
+    <div class="selection-grid" style="margin-top:12px">
+      <a class="pill" href="./subjects.html?grade=6"><span>🎒</span><span>Grade 6</span></a>
+      <a class="pill" href="./subjects.html?grade=7"><span>🎒</span><span>Grade 7</span></a>
+      <a class="pill" href="./subjects.html?grade=8"><span>🎒</span><span>Grade 8</span></a>
+      <a class="pill" href="./subjects.html?grade=9"><span>🎓</span><span>Grade 9</span></a>
+      <a class="pill" href="./subjects.html?grade=10"><span>🎓</span><span>Grade 10</span></a>
+      <a class="pill" href="./subjects.html?grade=11"><span>🏛️</span><span>Grade 11</span></a>
+      <a class="pill" href="./subjects.html?grade=12"><span>🏛️</span><span>Grade 12</span></a>
+    </div>
+  </main>
+
+  <div class="footer-space"></div>
+</body>
+</html>
+

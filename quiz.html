@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LearnPlay - Unit Quiz</title>
+  <link rel="stylesheet" href="/workspace/styles.css">
+  <script>
+    const questions = [
+      {
+        type: 'mcq',
+        text: 'Which fraction equals 1/2?',
+        options: ['2/3', '3/6', '4/5', '2/5'],
+        answerIndex: 1
+      },
+      {
+        type: 'tf',
+        text: 'Photosynthesis produces oxygen as a by-product.',
+        options: ['True', 'False'],
+        answerIndex: 0
+      },
+      {
+        type: 'mcq',
+        text: 'Atomic number represents the number of __ in an atom.',
+        options: ['neutrons', 'electrons', 'protons', 'isotopes'],
+        answerIndex: 2
+      }
+    ];
+    let current = 0;
+    let score = 0;
+    function renderGems() {
+      const wrap = document.getElementById('gems');
+      wrap.innerHTML = '';
+      for (let i = 0; i < 10; i++) {
+        const d = document.createElement('div');
+        d.className = 'gem' + (i < current ? ' active' : '');
+        wrap.appendChild(d);
+      }
+    }
+    function renderQuestion() {
+      renderGems();
+      const q = questions[current % questions.length];
+      const qc = document.getElementById('question');
+      qc.innerHTML = '';
+      const title = document.createElement('div');
+      title.textContent = `Q${current+1}. ${q.text}`;
+      qc.appendChild(title);
+      const answers = document.createElement('div');
+      answers.className = 'answers';
+      q.options.forEach((opt, idx) => {
+        const a = document.createElement('div');
+        a.className = 'answer';
+        a.textContent = opt;
+        a.addEventListener('click', () => select(idx === q.answerIndex, a));
+        answers.appendChild(a);
+      });
+      qc.appendChild(answers);
+    }
+    function select(correct, el) {
+      if (correct) {
+        score += 1;
+        el.classList.add('correct');
+      } else {
+        el.classList.add('wrong');
+      }
+      setTimeout(() => {
+        current += 1;
+        if (current >= 10) {
+          showResults();
+        } else {
+          renderQuestion();
+        }
+      }, 600);
+    }
+    function showResults() {
+      document.getElementById('quiz').style.display = 'none';
+      const r = document.getElementById('results');
+      r.style.display = 'block';
+      document.getElementById('score').textContent = `${score} / 10`;
+      const stars = score >= 9 ? 3 : score >= 7 ? 2 : score >= 5 ? 1 : 0;
+      document.getElementById('stars').textContent = '⭐'.repeat(stars);
+      document.getElementById('coins').textContent = (score * 10).toString();
+      const badge = score >= 8 ? '🏅 Mastery Badge' : score >= 6 ? '🎖 Skilled Badge' : '🎗 Participant Badge';
+      document.getElementById('badge').textContent = badge;
+    }
+    function startQuiz() {
+      current = 0; score = 0;
+      document.getElementById('quiz').style.display = 'grid';
+      document.getElementById('results').style.display = 'none';
+      renderQuestion();
+    }
+    document.addEventListener('DOMContentLoaded', startQuiz);
+  </script>
+</head>
+<body>
+  <header class="navbar">
+    <div class="container navbar-inner">
+      <a class="brand" href="./index.html"><span class="logo">🎓</span> LearnPlay</a>
+      <a class="auth-btn" href="./auth.html">Account</a>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1>Unit Quiz</h1>
+    <p class="sub">10 questions · MCQs · True/False · drag-match (simulated). Progress gems light up as you answer.</p>
+
+    <section id="quiz" class="quiz">
+      <div id="gems" class="gems"></div>
+      <div id="question" class="question"></div>
+    </section>
+
+    <section id="results" class="results" style="display:none">
+      <h2>Results</h2>
+      <div class="rewards">
+        <div class="badge">💰 <span id="coins">0</span> Coins</div>
+        <div class="badge">⭐ <span id="stars"></span></div>
+        <div class="badge">🏅 <span id="badge">Badge</span></div>
+      </div>
+      <div class="form-actions" style="margin-top:12px">
+        <button class="btn btn-primary" onclick="startQuiz()">Retry Quiz</button>
+        <a class="btn btn-ghost" href="./chapters.html">Back to Chapter</a>
+      </div>
+    </section>
+  </main>
+  <div class="footer-space"></div>
+</body>
+</html>
+

@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LearnPlay - Login / Sign Up</title>
+  <link rel="stylesheet" href="/workspace/styles.css">
+  <style>
+    .auth-wrap { max-width: 720px; margin: 24px auto; }
+  </style>
+  </head>
+<body>
+  <div class="float-layer" aria-hidden="true">
+    <div class="float-icon" style="left:10%; animation-duration: 20s;">🔐</div>
+    <div class="float-icon" style="left:40%; animation-duration: 24s; animation-delay:-6s;">🪪</div>
+    <div class="float-icon" style="left:75%; animation-duration: 22s; animation-delay:-10s;">📇</div>
+  </div>
+
+  <header class="navbar">
+    <div class="container navbar-inner">
+      <a class="brand" href="./index.html"><span class="logo">🎓</span> LearnPlay</a>
+      <a class="auth-btn" href="./auth.html">Login / Sign Up</a>
+    </div>
+  </header>
+
+  <main class="container auth-wrap">
+    <h1>Welcome back!</h1>
+    <p class="sub">Log in or create your account to start your learning journey.</p>
+
+    <section class="tabs">
+      <input id="tab-login" type="radio" name="auth" checked>
+      <input id="tab-signup" type="radio" name="auth">
+
+      <div class="tab-headers">
+        <label for="tab-login">Login</label>
+        <label for="tab-signup">Sign Up</label>
+      </div>
+
+      <div class="tab-panels">
+        <div class="panel login">
+          <form>
+            <div class="form-grid">
+              <div class="field">
+                <label>Username</label>
+                <input type="text" placeholder="Your username">
+              </div>
+              <div class="field">
+                <label>Password</label>
+                <input type="password" placeholder="Your password">
+              </div>
+            </div>
+            <div class="form-actions">
+              <a class="btn btn-primary" href="./syllabus.html">Login</a>
+              <a class="btn btn-ghost" href="./index.html">Back</a>
+            </div>
+          </form>
+        </div>
+
+        <div class="panel signup">
+          <form>
+            <div class="form-grid">
+              <div class="field">
+                <label>Username</label>
+                <input type="text" placeholder="Pick a username">
+              </div>
+              <div class="field">
+                <label>Password</label>
+                <input type="password" placeholder="Create a password">
+              </div>
+              <div class="field">
+                <label>Age</label>
+                <input type="number" min="6" max="99" placeholder="e.g. 13">
+              </div>
+              <div class="field">
+                <label>Role</label>
+                <select>
+                  <option>Student</option>
+                  <option>Teacher</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-actions">
+              <a class="btn btn-primary" href="./syllabus.html">Create Account</a>
+              <a class="btn btn-ghost" href="./index.html">Back</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="footer-space"></div>
+</body>
+</html>
+

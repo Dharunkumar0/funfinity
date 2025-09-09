@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LearnPlay - Select Subject</title>
+  <link rel="stylesheet" href="/workspace/styles.css">
+  <script>
+    function getGrade() {
+      const params = new URLSearchParams(location.search);
+      return parseInt(params.get('grade') || '6', 10);
+    }
+    function setupSubjects() {
+      const grade = getGrade();
+      const els = document.querySelectorAll('[data-unlock]');
+      els.forEach(el => {
+        const unlockGrade = parseInt(el.getAttribute('data-unlock') || '6', 10);
+        if (grade < unlockGrade) {
+          el.classList.add('locked');
+          el.setAttribute('aria-disabled', 'true');
+          el.setAttribute('tabindex', '-1');
+          el.addEventListener('click', (e) => e.preventDefault());
+        }
+      });
+      const label = document.getElementById('grade-label');
+      label.textContent = `Grade ${grade}`;
+    }
+    document.addEventListener('DOMContentLoaded', setupSubjects);
+  </script>
+</head>
+<body>
+  <header class="navbar">
+    <div class="container navbar-inner">
+      <a class="brand" href="./index.html"><span class="logo">🎓</span> LearnPlay</a>
+      <a class="auth-btn" href="./auth.html">Account</a>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1>Pick your subject</h1>
+    <p class="sub">Available for <strong id="grade-label">Grade</strong>. Cartoonish icons for middle school; sleeker icons for seniors.</p>
+
+    <section class="selection">
+      <div class="selection-grid">
+        <a class="pill" href="./chapters.html?subject=math" data-unlock="6">
+          <span style="font-size:22px">📐</span>
+          <span>Maths</span>
+          <span class="small">Calculator · Ruler · Abacus</span>
+        </a>
+        <a class="pill" href="./chapters.html?subject=science" data-unlock="6">
+          <span style="font-size:22px">🧪</span>
+          <span>Science</span>
+          <span class="small">Flask · Atom · DNA</span>
+        </a>
+        <a class="pill" href="./chapters.html?subject=social" data-unlock="6">
+          <span style="font-size:22px">🌍</span>
+          <span>Social Science</span>
+          <span class="small">Grades 6</span>
+        </a>
+        <a class="pill" href="./chapters.html?subject=english" data-unlock="6">
+          <span style="font-size:22px">📖</span>
+          <span>English</span>
+          <span class="small">Grades 6</span>
+        </a>
+        <a class="pill" href="./chapters.html?subject=physics" data-unlock="9">
+          <span style="font-size:22px">⚛</span>
+          <span>Physics</span>
+          <span class="small">Unlocks Grade 9+</span>
+        </a>
+        <a class="pill" href="./chapters.html?subject=chemistry" data-unlock="9">
+          <span style="font-size:22px">🧪</span>
+          <span>Chemistry</span>
+          <span class="small">Unlocks Grade 9+</span>
+        </a>
+        <a class="pill" href="./chapters.html?subject=biology" data-unlock="9">
+          <span style="font-size:22px">🧬</span>
+          <span>Biology</span>
+          <span class="small">Unlocks Grade 9+</span>
+        </a>
+        <a class="pill" href="./chapters.html?subject=economics" data-unlock="11">
+          <span style="font-size:22px">📊</span>
+          <span>Economics</span>
+          <span class="small">Unlocks Grade 11+</span>
+        </a>
+        <a class="pill" href="./chapters.html?subject=commerce" data-unlock="11">
+          <span style="font-size:22px">💼</span>
+          <span>Commerce</span>
+          <span class="small">Unlocks Grade 11+</span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <div class="footer-space"></div>
+</body>
+</html>
+

@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LearnPlay - Chapter Map</title>
+  <link rel="stylesheet" href="/workspace/styles.css">
+  <script>
+    function getSubject() {
+      const params = new URLSearchParams(location.search);
+      return (params.get('subject') || 'math').toLowerCase();
+    }
+    function island(x, y, emoji, title, progress, locked) {
+      const d = document.createElement('a');
+      d.href = locked ? '#' : './quiz.html?chapter=' + encodeURIComponent(title);
+      d.className = 'island' + (locked ? ' locked' : '');
+      d.style.left = x + 'px';
+      d.style.top = y + 'px';
+      d.innerHTML = `<div class="emoji">${emoji}</div><div class="title">${title}</div><div class="progress">${progress}</div>`;
+      return d;
+    }
+    function bridge(x, y, deg, w) {
+      const b = document.createElement('div');
+      b.className = 'bridge';
+      b.style.left = x + 'px';
+      b.style.top = y + 'px';
+      b.style.transform = `rotate(${deg}deg)`;
+      b.style.width = (w || 120) + 'px';
+      return b;
+    }
+    function setupMap() {
+      const subject = getSubject();
+      const titleEl = document.getElementById('subject-title');
+      const map = document.getElementById('map');
+      const sets = {
+        math: [
+          { e:'🍕', t:'Fractions (Pizza Island)', p:'2/5 ⭐', l:false },
+          { e:'➗', t:'Division Tower', p:'0/5 ⭐', l:true },
+          { e:'📈', t:'Algebra Bridge', p:'0/5 ⭐', l:true },
+          { e:'♾', t:'Calculus Infinity Tower', p:'0/5 ⭐', l:true }
+        ],
+        science: [
+          { e:'🌊', t:'Water Cycle Falls', p:'1/5 ⭐', l:false },
+          { e:'💡', t:'Electricity Lab', p:'0/5 ⭐', l:true },
+          { e:'🧬', t:'DNA Helix Path', p:'0/5 ⭐', l:true }
+        ],
+        chemistry: [
+          { e:'💎', t:'Periodic Table Crystal Cave', p:'0/5 ⭐', l:false },
+          { e:'⚗️', t:'Reactions Forge', p:'0/5 ⭐', l:true }
+        ],
+        biology: [
+          { e:'🌳', t:'Photosynthesis Jungle', p:'0/5 ⭐', l:false },
+          { e:'🫀', t:'Human Body Valley', p:'0/5 ⭐', l:true }
+        ],
+        physics: [
+          { e:'⚡', t:'Electromagnetism Lightning Mountain', p:'0/5 ⭐', l:false },
+          { e:'🏔️', t:'Kinematics Ridge', p:'0/5 ⭐', l:true }
+        ]
+      };
+      const chosen = sets[subject] || sets.math;
+      titleEl.textContent = subject.charAt(0).toUpperCase() + subject.slice(1);
+
+      const coords = [ [40,60], [220,160], [420,80], [600,180] ];
+      chosen.forEach((c, i) => {
+        const [x, y] = coords[i % coords.length];
+        map.appendChild(island(x, y, c.e, c.t, c.p, c.l));
+        if (i > 0) {
+          const [px, py] = coords[(i-1) % coords.length];
+          const dx = x - px; const dy = y - py;
+          const len = Math.sqrt(dx*dx + dy*dy);
+          const angle = Math.atan2(dy, dx) * 180 / Math.PI;
+          map.appendChild(bridge(px + 80, py + 60, angle, len - 120));
+        }
+      });
+    }
+    document.addEventListener('DOMContentLoaded', setupMap);
+  </script>
+</head>
+<body>
+  <header class="navbar">
+    <div class="container navbar-inner">
+      <a class="brand" href="./index.html"><span class="logo">🎓</span> LearnPlay</a>
+      <a class="auth-btn" href="./auth.html">Account</a>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1><span id="subject-title">Subject</span> Chapter Map</h1>
+    <p class="sub">Chapters unlock sequentially. Locked chapters are faded and show a padlock.</p>
+
+    <section id="map" class="map"></section>
+
+    <div class="form-actions" style="margin-top:16px">
+      <a class="btn btn-ghost" href="./subjects.html">Back to Subjects</a>
+    </div>
+  </main>
+  <div class="footer-space"></div>
+</body>
+</html>
+
