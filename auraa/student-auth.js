@@ -31,6 +31,15 @@ function goToStudentSignup() {
     window.location.href = 'signup.html';
 }
 
+function showSyllabusSelection() {
+    var signupCard = document.querySelector('.signup-card');
+    var syllabusSection = document.querySelector('.syllabus-selection');
+    if (signupCard && syllabusSection) {
+        signupCard.style.display = 'none';
+        syllabusSection.style.display = 'block';
+    }
+}
+
 // Attach to signup form
 (function(){
     var signupForm = document.querySelector('.signup-form');
@@ -70,7 +79,7 @@ function goToStudentSignup() {
             };
             
             saveStudentProfile(profile);
-            goToGradeSelection();
+            showSyllabusSelection();
         });
     }
 })();
