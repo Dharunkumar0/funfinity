@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - AURRAA</title>
+    <link rel="stylesheet" href="signup-styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One:wght@400&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background">
+        <div class="floating-icons">
+            <div class="icon">📚</div>
+            <div class="icon">✏️</div>
+            <div class="icon">⭐</div>
+            <div class="icon">🚀</div>
+            <div class="icon">🧠</div>
+        </div>
+    </div>
+
+    <header class="app-header">
+        <h1 class="app-logo">AURRAA</h1>
+    </header>
+
+    <main class="signup-container">
+        <div class="signup-card">
+            <h2>Create Your Account</h2>
+            <form class="signup-form">
+                <div class="form-group" data-emoji="👤">
+                    <label for="full-name">Full Name</label>
+                    <input type="text" id="full-name" placeholder="Enter your full name" required>
+                </div>
+                <div class="form-group" data-emoji="🏫">
+                    <label for="institution">Institution</label>
+                    <input type="text" id="institution" placeholder="Enter your school/institution name" required>
+                </div>
+                <div class="form-group" data-emoji="👨‍🏫">
+                    <label for="teacher-name">Teacher Name</label>
+                    <input type="text" id="teacher-name" placeholder="Enter your teacher's name" required>
+                </div>
+                <div class="form-group" data-emoji="📛">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" placeholder="Choose a username" required>
+                </div>
+                <div class="form-group" data-emoji="📧">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group" data-emoji="🔒">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Create a password" required>
+                </div>
+                <div class="form-group" data-emoji="🔑">
+                    <label for="confirm-password">Confirm Password</label>
+                    <input type="password" id="confirm-password" placeholder="Confirm your password" required>
+                </div>
+                <button type="submit" class="signup-btn">Sign Up</button>
+            </form>
+            <p class="login-link">Already have an account? <a href="login.html">Login</a></p>
+        </div>
+
+        <section class="syllabus-selection" style="display:none;">
+            <h2>Select Your Syllabus</h2>
+            <div class="syllabus-buttons">
+                <a href="ncret-grade.html"><button class="syllabus-btn ncert">
+                    <span class="icon">📖</span>
+                    NCERT
+                </button>
+                </a>
+                <a href="scert-grade.html"><button class="syllabus-btn scert">
+                    <span class="icon">📜</span>
+                    SCERT
+                </button>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <script src="student-auth.js"></script>
+</body>
+</html>
