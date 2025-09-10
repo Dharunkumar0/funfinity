@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - AURRAA</title>
+    <link rel="stylesheet" href="login-styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One:wght@400&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Floating Background Icons -->
+    <div class="floating-icons">
+        <div class="floating-icon book-icon">📚</div>
+        <div class="floating-icon pencil-icon">✏️</div>
+        <div class="floating-icon star-icon">⭐</div>
+        <div class="floating-icon rocket-icon">🚀</div>
+        <div class="floating-icon brain-icon">🧠</div>
+        <div class="floating-icon trophy-icon">🏆</div>
+        <div class="floating-icon lightbulb-icon">💡</div>
+        <div class="floating-icon apple-icon">🍎</div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="login-container">
+        <!-- Header -->
+        <header class="login-header">
+            <div class="logo">
+                <h1>AURRAA</h1>
+            </div>
+        </header>
+
+        <!-- Login Form Card -->
+        <main class="login-main">
+            <div class="login-card">
+                <div class="card-header">
+                    <h2>Welcome Back!</h2>
+                    <p>Sign in to continue your learning journey</p>
+                </div>
+
+                <form class="login-form" action="grade.html" method="GET">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <div class="input-container">
+                            <span class="input-icon">👤</span>
+                            <input 
+                                type="text" 
+                                id="username" 
+                                name="username" 
+                                placeholder="Enter your username"
+                                required
+                                pattern=".{3,}"
+                                title="Username must be at least 3 characters long"
+                            >
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <div class="input-container">
+                            <span class="input-icon">🔒</span>
+                            <input 
+                                type="password" 
+                                id="password" 
+                                name="password" 
+                                placeholder="Enter your password"
+                                required
+                                pattern=".{6,}"
+                                title="Password must be at least 6 characters long"
+                            >
+                        </div>
+                    </div>
+
+                    <div class="form-options">
+                        <label class="remember-me">
+                            <input type="checkbox" name="remember">
+                            <span class="checkmark"></span>
+                            Remember me
+                        </label>
+                        <a href="#" class="forgot-password">Forgot Password?</a>
+                    </div>
+
+                    <button type="submit" class="login-btn">
+                        <span>Login</span>
+                        <div class="btn-shine"></div>
+                    </button>
+                </form>
+
+                <div class="signup-link">
+                    <p>Don't have an account? <a href="signin.html">Sign Up</a></p>
+                </div>
+
+                <div class="divider">
+                    <span>or</span>
+                </div>
+
+                <div class="social-login">
+                    <button class="social-btn google-btn">
+                        <span class="social-icon">🔍</span>
+                        Continue with Google
+                    </button>
+                    <button class="social-btn apple-btn">
+                        <span class="social-icon">🍎</span>
+                        Continue with Apple
+                    </button>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="login-footer">
+            <p>&copy; 2024 AURRAA. Making learning fun and engaging!</p>
+        </footer>
+    </div>
+
+
+</body>
+</html>
