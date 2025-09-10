@@ -8,6 +8,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Fredoka+One:wght@400&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Navigation Bar -->
+    <nav class="navigation">
+        <a href="index.html" class="nav-btn">Back to Home</a>
+    </nav>
+
     <!-- Floating Background Icons -->
     <div class="floating-icons">
         <div class="floating-icon book-icon">📚</div>
@@ -38,6 +43,20 @@
                 </div>
 
                 <form class="login-form" action="grade.html" method="GET">
+                    <div class="form-group">
+                        <label for="institution">Institution</label>
+                        <div class="input-container">
+                            <span class="input-icon">🏫</span>
+                            <input 
+                                type="text" 
+                                id="institution" 
+                                name="institution" 
+                                placeholder="Enter your school/institution name"
+                                required
+                            >
+                        </div>
+                    </div>
+
                     <div class="form-group">
                         <label for="username">Username</label>
                         <div class="input-container">
@@ -86,23 +105,8 @@
                 </form>
 
                 <div class="signup-link">
-                    <p>Don't have an account? <a href="signin.html">Sign Up</a></p>
-                </div>
-
-                <div class="divider">
-                    <span>or</span>
-                </div>
-
-                <div class="social-login">
-                    <button class="social-btn google-btn">
-                        <span class="social-icon">🔍</span>
-                        Continue with Google
-                    </button>
-                    <button class="social-btn apple-btn">
-                        <span class="social-icon">🍎</span>
-                        Continue with Apple
-                    </button>
-                </div>
+                    <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
+                </div>                
             </div>
         </main>
 
@@ -112,6 +116,6 @@
         </footer>
     </div>
 
-
+    <script src="student-auth.js"></script>
 </body>
 </html>

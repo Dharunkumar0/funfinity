@@ -13,6 +13,7 @@
       justify-content: center;
       align-items: center;
       height: 100vh;
+      flex-direction: column;
     }
     .card {
       background: rgba(255, 255, 255, 0.95);
@@ -48,9 +49,30 @@
     #pauseBtn:hover { background: #2e7d32; }
     select { border: 1px solid #ccc; font-weight: normal; padding: 6px 12px; }
     .numText { font-weight: bold; font-size: 18px; fill: #111; }
+    .navigation {
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1000;
+    }
+    .nav-btn {
+      background: #007bff;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .nav-btn:hover {
+      background: #0056b3;
+    }
   </style>
 </head>
 <body>
+  <nav class="navigation">
+    <a href="index.html" class="nav-btn">Back to Home</a>
+  </nav>
   <div class="card">
     <h2>Knowing Our Numbers</h2>
     <h3>Comparing & Ordering Large Numbers</h3>

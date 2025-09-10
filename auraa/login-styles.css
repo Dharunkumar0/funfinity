@@ -7,7 +7,8 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: radial-gradient(1200px 600px at 20% 20%, rgba(255,255,255,0.12), rgba(255,255,255,0) 60%),
+                linear-gradient(120deg, #6a11cb 0%, #8f6cd4 40%, #f6a07b 80%, #fc4a1a 100%);
     min-height: 100vh;
     overflow-x: hidden;
     position: relative;
