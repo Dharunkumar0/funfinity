@@ -70,9 +70,7 @@
   </style>
 </head>
 <body>
-  <nav class="navigation">
-    <a href="index.html" class="nav-btn">Back to Home</a>
-  </nav>
+  <!-- Navigation Bar removed -->
   <div class="card">
     <h2>Knowing Our Numbers</h2>
     <h3>Comparing & Ordering Large Numbers</h3>
@@ -107,9 +105,10 @@
     </svg>
 
     <div id="caption" class="caption">Let's learn how to compare and order large numbers!</div>
-    <br>
-    <button id="pauseBtn">⏸ Pause</button>
-    <button id="replayBtn">🔄 Replay</button>
+  <br>
+  <button id="pauseBtn">⏸ Pause</button>
+  <button id="replayBtn">🔄 Replay</button>
+  <button id="videoFinishBtn" class="nav-btn">Finish</button>
   </div>
 
   <script>
@@ -247,6 +246,13 @@
     });
 
     playAnimation();
+
+    // Finish button: navigate back to chapter and open next topic (comparison)
+    const videoFinishBtn = document.getElementById('videoFinishBtn');
+    videoFinishBtn?.addEventListener('click', ()=>{
+      // go back to chapter page and request the 'comparison' topic to open
+      window.location.href = 'chapter1-numbers.html?open=comparison';
+    });
   </script>
 </body>
 </html>

@@ -41,7 +41,7 @@
                             <li>Reading Large Numbers</li>
                             <li>Using Commas in Indian System</li>
                         </ul>
-                        <a href="video-g6-Comparing & Ordering Large Numbers.html" class="practice-btn">Practice Now ▶️</a>
+                        <a href="video-g6-india-and-inter.html" class="practice-btn">Practice Now ▶️</a>
                     </div>
                 </div>
             </div>
@@ -58,10 +58,9 @@
                         <ul>
                             <li>Place Values up to Millions</li>
                             <li>International Number Names</li>
-                            <li>Using Commas in International System</li>
+                            <li>Using Largest System</li>
                         </ul>
-                        <div class="practice-btn">Practice Now ▶️</div>
-                    </div>
+                        <a href="video-g6-word-problem.html" class="practice-btn">Practice Now ▶️</a>
                 </div>
             </div>
 
@@ -79,7 +78,7 @@
                             <li>Estimating Sums</li>
                             <li>Real-life Applications</li>
                         </ul>
-                        <div class="practice-btn">Practice Now ▶️</div>
+                        <a href="video-g6-estimation.html" class="practice-btn">Practice Now ▶️</a>
                     </div>
                 </div>
             </div>
@@ -98,10 +97,17 @@
                             <li>Ascending and Descending Order</li>
                             <li>Number Line Comparisons</li>
                         </ul>
-                        <div class="practice-btn">Practice Now ▶️</div>
+                        <a href="video-g6-Comparing & Ordering Large Numbers.html" class="practice-btn">Practice Now ▶️</a>
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="game-controls">
+            <button id="startGameBtn" class="topic-btn start-game" data-topic="game">
+                <span class="topic-icon">🎮</span>
+                <span class="topic-text">Start Game</span>
+                <div class="btn-glow"></div>
+            </button>
         </div>
 
 
@@ -117,10 +123,18 @@
             </a>
         </nav>
 
-        <!-- Consistent Navigation Bar -->
-        <nav class="navigation">
-            <a href="index.html" class="nav-btn">Back to Home</a>
-        </nav>
+        <!-- Game overlay (hidden) -->
+        <div id="gameOverlay" class="game-overlay" aria-hidden="true">
+            <div class="game-box">
+                <h2 id="gameTitle">Mini Game</h2>
+                <div id="gameContent">Get ready! The game will start when you press Play.</div>
+                <div class="game-actions">
+                    <button id="playBtn" class="game-btn">Play</button>
+                    <button id="finishBtn" class="game-btn" style="display:none">Finish</button>
+                    <button id="continueBtn" class="game-btn" style="display:none">Continue →</button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -141,5 +155,99 @@
             });
         });
     </script>
+        <style>
+        /* Game controls */
+        .game-controls { text-align: center; margin: 18px 0; }
+        .start-game { background: linear-gradient(90deg,#ffd86f,#ff8a65); border:none; padding:12px 18px; border-radius:12px; font-weight:700; cursor:pointer; box-shadow:0 8px 20px rgba(0,0,0,0.12); }
+
+        /* Overlay */
+        .game-overlay { position: fixed; inset:0; background: rgba(0,0,0,0.6); display:flex; align-items:center; justify-content:center; z-index:9999; visibility:hidden; opacity:0; transition:opacity .2s ease; }
+        .game-overlay[aria-hidden="false"] { visibility:visible; opacity:1; }
+        .game-box { background: #fff; border-radius:14px; padding:20px; width:90%; max-width:520px; text-align:center; box-shadow:0 12px 30px rgba(0,0,0,0.25); }
+        .game-box h2 { margin-bottom:12px; }
+        .game-actions { margin-top:16px; display:flex; gap:10px; justify-content:center; }
+        .game-btn { padding:10px 14px; border-radius:10px; border:none; cursor:pointer; font-weight:600; }
+        .game-btn:nth-child(1){ background:#4CAF50;color:#fff }
+        .game-btn:nth-child(2){ background:#f44336;color:#fff }
+        .game-btn:nth-child(3){ background:#2196F3;color:#fff }
+        </style>
+
+        <script>
+        // Game overlay logic: simple simulated mini-game that unlocks Continue
+        (function(){
+            const startGameBtn = document.getElementById('startGameBtn');
+            const overlay = document.getElementById('gameOverlay');
+            const playBtn = document.getElementById('playBtn');
+            const finishBtn = document.getElementById('finishBtn');
+            const continueBtn = document.getElementById('continueBtn');
+            const gameContent = document.getElementById('gameContent');
+            const topics = Array.from(document.querySelectorAll('.topic-wrapper'));
+
+            function openOverlay(){ overlay.setAttribute('aria-hidden','false'); }
+            function closeOverlay(){ overlay.setAttribute('aria-hidden','true'); }
+
+            startGameBtn?.addEventListener('click', ()=>{ openOverlay(); });
+
+            playBtn?.addEventListener('click', ()=>{
+                // simulate game steps
+                playBtn.style.display='none';
+                gameContent.textContent = 'Playing... collect 3 stars by clicking the boxes';
+                // show fake interactive boxes
+                const boxes = document.createElement('div'); boxes.style.display='flex'; boxes.style.justifyContent='center'; boxes.style.gap='10px'; boxes.style.marginTop='12px';
+                for(let i=0;i<3;i++){
+                    const b = document.createElement('button'); b.textContent='⭐'; b.style.fontSize='20px'; b.style.padding='12px'; b.className='starBox';
+                    boxes.appendChild(b);
+                }
+                gameContent.appendChild(boxes);
+                let collected = 0;
+                boxes.querySelectorAll('button').forEach(btn=>{
+                    btn.addEventListener('click', ()=>{
+                        if(btn.disabled) return;
+                        btn.disabled = true; btn.style.opacity=0.5; collected++;
+                        if(collected>=3){
+                            gameContent.textContent = 'Well done! You collected all stars.';
+                            finishBtn.style.display='inline-block';
+                        }
+                    });
+                });
+            });
+
+            finishBtn?.addEventListener('click', ()=>{
+                // show continue
+                finishBtn.style.display='none';
+                continueBtn.style.display='inline-block';
+                gameContent.textContent = 'Finished — ready to continue to the next topic.';
+            });
+
+            continueBtn?.addEventListener('click', ()=>{
+                // close overlay and advance to next topic
+                closeOverlay();
+                // find current open topic, or find first topic and move to next
+                const activeIndex = topics.findIndex(t => t.classList.contains('active'));
+                const nextIndex = activeIndex >= 0 ? Math.min(topics.length-1, activeIndex+1) : 0;
+                if(activeIndex >=0 && nextIndex !== activeIndex){
+                    // open next topic
+                    const next = topics[nextIndex];
+                    next.classList.add('active');
+                    // scroll into view for clarity
+                    next.scrollIntoView({behavior:'smooth', block:'center'});
+                } else if(topics.length>0){
+                    topics[0].classList.add('active');
+                    topics[0].scrollIntoView({behavior:'smooth', block:'center'});
+                }
+                // reset overlay UI for next time
+                playBtn.style.display='inline-block';
+                finishBtn.style.display='none';
+                continueBtn.style.display='none';
+                gameContent.textContent = 'Get ready! The game will start when you press Play.';
+                // remove any star boxes left behind
+                const leftBoxes = gameContent.querySelectorAll('.starBox');
+                leftBoxes.forEach(b => b.remove());
+            });
+
+            // close overlay when clicking outside box
+            overlay.addEventListener('click', (e)=>{ if(e.target === overlay) closeOverlay(); });
+        })();
+        </script>
 </body>
 </html>
